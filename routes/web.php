@@ -35,9 +35,10 @@ Route::group([
 
 
         
- 
+        Route::get('/pelanggan/json', 'PelangganController@datajson')->name('pelanggan.json');
         Route::resource('/pop', PopController::class)->middleware('can:role,"admin","noc"');
         Route::resource('/pelanggan', PelangganController::class)->middleware('can:role,"admin","noc"');
+       
         
 
 

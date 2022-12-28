@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
+use DataTables;
+use Yajra\DataTables\Html\Builder;
 
 class PelangganController extends Controller
 {
@@ -12,12 +14,42 @@ class PelangganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    //  public function datajson()
+	// {
+	// 	// return Datatables::of(Pelanggan::all())->make(true);
+    //     if ($request->ajax()) {
+    //         $data = Pelanggan::latest()->get();
+    //         return Datatables::of($data)
+    //             ->addIndexColumn()
+    //             ->addColumn('action', function($row){
+    //                 $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+    //                 return $actionBtn;
+    //             })
+    //             ->rawColumns(['action'])
+    //             ->make(true);
+    //     }
+        
+	// }
+    public function index(Request $request)
     {
-        // Post::find(1)->comments;
-        $data = Pelanggan::get();
-        dd($data);
-        // return response()->json($data);
+        if ($request->ajax()) {
+            $data = Pelanggan::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+   
+                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
+
+                     return $btn;
+
+                   
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('content.pelanggan.index');
     }
 
     /**
@@ -81,8 +113,16 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pelanggan $pelanggan)
+    public function destroy($id)
     {
-        //
+          //delete post by ID
+          Pelanggan::where('id', $id)->delete();
+
+          //return response
+          return response()->json([
+              'success' => true,
+              'message' => 'Data Post Berhasil Dihapus!.',
+          ]); 
+      
     }
 }
