@@ -15,22 +15,7 @@ class PelangganController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //  public function datajson()
-	// {
-	// 	// return Datatables::of(Pelanggan::all())->make(true);
-    //     if ($request->ajax()) {
-    //         $data = Pelanggan::latest()->get();
-    //         return Datatables::of($data)
-    //             ->addIndexColumn()
-    //             ->addColumn('action', function($row){
-    //                 $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-    //                 return $actionBtn;
-    //             })
-    //             ->rawColumns(['action'])
-    //             ->make(true);
-    //     }
-        
-	// }
+   
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -121,7 +106,7 @@ class PelangganController extends Controller
           //return response
           return response()->json([
               'success' => true,
-              'message' => 'Data Post Berhasil Dihapus!.',
+              'message' => 'Data Pelanggan Berhasil Dihapus!.',
           ]); 
       
     }

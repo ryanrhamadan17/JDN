@@ -14,52 +14,55 @@
  @endpush
 @section('content')
 <div class="main-panel">
-			<div class="content">
-				<div class="page-inner">
-					<div class="page-header">
-						<h4 class="page-title">Dashboard</h4>
-						<div class="btn-group btn-group-page-header ml-auto">
-							<button type="button" class="btn btn-light btn-round btn-page-header-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fa fa-ellipsis-h"></i>
-							</button>
-							<div class="dropdown-menu">
-								<div class="arrow"></div>
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<a class="dropdown-item" href="#">Something else here</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Separated link</a>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-					<div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Daftar User</div>
-
-                <div class="card-body">
-
-                <table class="table cell-border yajra-datatable">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Alamat</th>
-				<th>Telepon</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-                </div>
-            </div>
+  <div class="content">
+    <div class="page-inner">
+      <div class="page-header">
+        <h4 class="page-title">Dashboard</h4>
+        <div class="btn-group btn-group-page-header ml-auto">
+          <button type="button" class="btn btn-light btn-round btn-page-header-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-ellipsis-h"></i>
+          </button>
+          <div class="dropdown-menu">
+            <div class="arrow"></div>
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
         </div>
-					</div>
-						
-						
-				</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">Daftar Pelanggan</div>
+			<div class="card-body">
+			          
 			</div>
+            <div class="card-body">
+				
+				
+				
+				
+				
+              <table class="table table-striped table-bordered yajra-datatable">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Telepon</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 		
 @endsection
@@ -126,10 +129,10 @@ Swal.fire({
 				//show success message
 				Swal.fire({
 					type: 'success',
-					icon: 'success',
+					icon: 'info',
 					title: `${response.message}`,
 					showConfirmButton: false,
-					timer: 3000
+					timer: 1000
 				});
 				table.draw();
 
