@@ -10,7 +10,7 @@
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
   -->
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvDUXvokgjjB_rPMXwLZwOLbet0AJYfwI&callback=initMap&v=weekly"
     type="text/javascript"></script>
   <style type="text/css">    
@@ -48,7 +48,7 @@
           <div class="card">
             <div class="card-header">Daftar POP</div>
             <div class="card-body">	
-                <a class="btn btn-success" href="javascript:void(0)" id="createNewProduct"> Tambah Pop</a>
+              <a href="{{route('pop.create')}}" class="btn btn-success">Tambah POP</a>
             </div>
             <div class="card-body">	
               <table class="table table-striped table-bordered table-pop">
@@ -135,6 +135,7 @@
 @endsection
 @push('js')
 
+
 <script type="text/javascript">
 $(function () {
     
@@ -159,7 +160,7 @@ $(function () {
 			
         ]
     });
-
+   
       /*------------------------------------------
     --------------------------------------------
     Click to Button

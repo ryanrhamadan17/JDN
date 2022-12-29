@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pop;
 use App\Models\Catpop;
 use DataTables;
+use RealRashid\SweetAlert\Facades\Alert;
 class PopController extends Controller
 {
     /**
@@ -15,6 +16,7 @@ class PopController extends Controller
      */
     public function index(Request $request)
     {
+       
         if ($request->ajax()) {
             $data = Pop::latest()->get();
             return Datatables::of($data)
@@ -41,7 +43,11 @@ class PopController extends Controller
      */
     public function create()
     {
-        return view('content.pop.index');
+        $data = Pop::get();
+        $catpop = Catpop::get();
+        return view('content.pop.add', compact(['data', 'catpop']));
+       // return view('content.pop.add',compact('data','catpop'));
+       // return response()->json($data);
     }
 
     /**
@@ -52,7 +58,27 @@ class PopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return response()->json($request);
+        $request->validate([
+            'nama' => 'required',
+            'desc' => 'required',
+            'lat' => 'required',
+            'long' => 'required',
+            'catpop_id' => 'required',
+        ]);
+        
+        $data = Pop::create($request->all());
+      
+        if ($data) {
+            Alert::success('Success', 'Data\'Berhasil ditambahkan');
+            return redirect()->route('pop.index');
+        }
+        else {
+            Alert::error('Failed', 'Registration failed');
+            return back();
+        }
+       
+          
     }
 
     /**

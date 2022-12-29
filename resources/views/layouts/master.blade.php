@@ -24,6 +24,7 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<!-- <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}"> -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	@stack('css')
 </head>
 <body>
