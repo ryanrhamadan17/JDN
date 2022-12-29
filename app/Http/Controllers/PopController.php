@@ -41,7 +41,7 @@ class PopController extends Controller
      */
     public function create()
     {
-        //
+        return view('content.pop.index');
     }
 
     /**

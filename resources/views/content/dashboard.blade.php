@@ -551,7 +551,7 @@
 		
 @endsection
 @push('js')
-
+<script src="{{asset('assets/js/core/jquery.3.2.1.min.js')}}"></script> 
 
 <!-- Moment JS -->
 <script src="{{asset('assets/js/plugin/moment/moment.min.js')}}"></script>
