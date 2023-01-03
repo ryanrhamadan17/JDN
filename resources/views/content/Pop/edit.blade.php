@@ -48,7 +48,7 @@
 				 
 				</div>
 			  </div>
-			  <form action="{{ route('pop.update') }}/{{$data->id}}" method="POST" enctype="multipart/form-data">
+			  <form action="{{ route('pop.update', $data->id ) }}" method="POST" enctype="multipart/form-data">
 				@csrf
 				@method('PUT')
 				

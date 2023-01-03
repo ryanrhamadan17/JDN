@@ -112,17 +112,13 @@ class PopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Pop $id)
+    public function update(Request $request,Pop $pop)
     {   
-        $data =  Pop::find($id)->update($request->all())->save();
-        if ($data) {
-            Alert::success('Success', 'Data\'Berhasil ditambahkan');
+        $pop->update($request->all());
+
+
+        Alert::success('Success', 'Data\'Berhasil ditambahkan');
             return redirect()->route('pop.index');
-        }
-        else {
-            Alert::error('Failed', 'Registration failed');
-            return back();
-        }
        
     }
 
