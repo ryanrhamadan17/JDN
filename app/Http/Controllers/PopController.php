@@ -16,13 +16,13 @@ class PopController extends Controller
      */
     public function index(Request $request)
     {
-       
+    //    $link=route('pop.index');
         if ($request->ajax()) {
             $data = Pop::latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+                    $btn = '<a href="'.route('pop.edit',$row->id).'" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
    
                     $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
 
@@ -99,8 +99,10 @@ class PopController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    { 
+        $data = Pop::findOrFail($id);
+        $catpop = Catpop::get();
+        return view('content.pop.edit', compact(['data', 'catpop']));
     }
 
     /**
@@ -110,9 +112,18 @@ class PopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request,Pop $id)
+    {   
+        $data =  Pop::find($id)->update($request->all())->save();
+        if ($data) {
+            Alert::success('Success', 'Data\'Berhasil ditambahkan');
+            return redirect()->route('pop.index');
+        }
+        else {
+            Alert::error('Failed', 'Registration failed');
+            return back();
+        }
+       
     }
 
     /**
