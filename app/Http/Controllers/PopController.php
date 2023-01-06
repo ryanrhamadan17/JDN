@@ -7,6 +7,7 @@ use App\Models\Pop;
 use App\Models\Catpop;
 use DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
+use Validator;
 class PopController extends Controller
 {
     /**
@@ -114,11 +115,35 @@ class PopController extends Controller
      */
     public function update(Request $request,Pop $pop)
     {   
-        $pop->update($request->all());
+        //$pop->update($request->all());
+        // dd($request);
+        $validator = Validator::make($request->all(), [
+     
+            'nama'     => 'required',
+            'catpop_id'     => 'required',
+            'lat'   => 'required',
+            'long'   => 'required',
+            'desc'   => 'required'
+        ]);
+        
+        if($validator->fails()) {
+            Alert::error('Failed', 'Registration failed');
+            return back();
+        }
+        $post->update([
+            'nama'     => $request->nama,
+            'desc'     => $request->desc,
+            'lat'     => $request->lat,
+            'long'     => $request->long,
+            'catpop_id'   => $request->desc
+        ]);
 
-
-        Alert::success('Success', 'Data\'Berhasil ditambahkan');
+        if ($pop) {
+            Alert::success('Success', 'Data\'Berhasil ditambahkan');
             return redirect()->route('pop.index');
+        }
+        
+       
        
     }
 
