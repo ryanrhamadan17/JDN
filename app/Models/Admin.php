@@ -21,9 +21,4 @@ class Admin extends Authenticatable
         'password',
         'remember_token',
     ];
-    public function taskpetugas()
-    {
-        return $this->hasMany(Task::class,'petugas_id');
-        
-    }
 }

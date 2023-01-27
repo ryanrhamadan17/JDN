@@ -37,7 +37,6 @@ Route::group([
         
        
         Route::resource('/pop', PopController::class)->middleware('can:role,"admin","noc"');
-        Route::resource('/task', TaskController::class)->middleware('can:role,"admin","noc"');
         Route::resource('/pelanggan', PelangganController::class)->middleware('can:role,"admin","noc"');
        
         

@@ -17,9 +17,4 @@ class Pelanggan extends Model
         'paket_id',
         'marketing_id',
     ];
-    public function taskpelanggan()
-    {
-        return $this->hasMany(Task::class,'pelanggan_id');
-        
-    }
 }
